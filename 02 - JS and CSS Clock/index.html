@@ -106,17 +106,30 @@
       const secondsDegrees = ((seconds / 60) * 360) + 90;
       const minutesDegrees = ((minutes / 60) * 360) + 90;
       const hoursDegrees = ((hours / 12) * 360) + 90;
+      const timeObjArray = [
+        {
+          degrees: secondsDegrees,
+          hand: secondHand
+        },
+        {
+          degrees: minutesDegrees,
+          hand: minuteHand
+        },
+        {
+          degrees: hoursDegrees,
+          hand: hourHand
+        }]; 
 
-      if (secondsDegrees === 90) {
-        if (secondHand.style.transition !== '') return;
-        secondHand.style.transition = 'none';
-      } else if (secondHand.style.transition !== '') {
-        secondHand.style.removeProperty('transition');
-      }
-      
-      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      timeObjArray.forEach(timeObj => {
+        if (timeObj.degrees === 90) {
+          if (timeObj.hand.style.transition !== '') return;
+          timeObj.hand.style.transition = 'none';
+        } else if (timeObj.hand.style.transition !== '') {
+          timeObj.hand.style.removeProperty('transition');
+        }
+
+        timeObj.hand.style.transform = `rotate(${timeObj.degrees}deg)`;
+      });
     }
 
     setInterval(setDate, 1000);
