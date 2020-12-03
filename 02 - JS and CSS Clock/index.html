@@ -68,6 +68,13 @@
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
+    .second-hand {
+      background-color: red;
+    }
+
+    .min-hand {
+      background-color: navy;
+    }
   </style>
 
   <script>
@@ -77,18 +84,29 @@
 
     function setDate() {
       const now = new Date();
-
       const seconds = now.getSeconds();
       const minutes = now.getMinutes();
       const hours = now.getHours();
+
       /*
-      Divide current seconds by total seconds in a minute to get a percent.
+      Seconds:
+      Divide current seconds by total seconds in a minute (60) to get a percent.
+
+      Minutes:
+      Divide current minutes by total minutes in an hour (60) to get a percent.
+
+      Hours:
+      Divide current hours by total hours on the clock (12) to get a percent.
+
+      All:
       Multiply the percent by the total amount of degrees.
       Add 90 degrees because that is the default rotation for it to start at the top.
       */
+
       const secondsDegrees = ((seconds / 60) * 360) + 90;
       const minutesDegrees = ((minutes / 60) * 360) + 90;
-      const hoursDegrees = ((minutes / 24) * 360) + 90;
+      const hoursDegrees = ((hours / 12) * 360) + 90;
+      
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
       minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
       hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
