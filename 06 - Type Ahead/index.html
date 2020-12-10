@@ -42,7 +42,7 @@
 
     function displayMatches() {
       const search = this.value || ''
-      if (search && search.length >= 3) {
+      if (search && search.length >= charMin) {
         const matchArray = findMatches(search, cities);
         const html = matchArray.map(place => {
           const regex = new RegExp(search, 'gi');
