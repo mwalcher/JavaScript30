@@ -6,6 +6,7 @@ const toggle = player.querySelector('.toggle');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const ranges = player.querySelectorAll('.player__slider');
 let rangeActive = false;
+let progressActive = false;
 
 function togglePlay() {
     const method = video.paused ? 'play' : 'pause';
@@ -22,9 +23,7 @@ function skip() {
 }
 
 function handleRangeUpdate() {
-    if(rangeActive){
-        video[this.name] = this.value;
-    }
+    video[this.name] = this.value;
 }
 
 function handleProgress(){
@@ -46,9 +45,13 @@ toggle.addEventListener('click', togglePlay);
 skipButtons.forEach(button => button.addEventListener('click', skip));
 ranges.forEach(range => {
     range.addEventListener('change', handleRangeUpdate);
-    range.addEventListener('mousemove', handleRangeUpdate);
+    range.addEventListener('mousemove', (e) => rangeActive && handleRangeUpdate(e));
     range.addEventListener('mousedown', () => rangeActive = true);
     range.addEventListener('mouseup', () => rangeActive = false);
     range.addEventListener('mouseout', () => rangeActive = false);
 });
 progress.addEventListener('click', scrub);
+progress.addEventListener('mousemove', (e) => progressActive && handleRangeUpdate(e));
+progress.addEventListener('mousedown', () => progressActive = true);
+progress.addEventListener('mouseup', () => progressActive = false);
+progress.addEventListener('mouseout', () => progressActive = false);
