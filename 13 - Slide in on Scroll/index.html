@@ -164,13 +164,16 @@
 
     function checkSlide() {
       sliderImages.forEach(sliderImage => {
-        // half way through the image
-        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+        const scrollPassedOffset = 100;
+        // bottom of screen scroll position
+        const bottomScrollPos = window.scrollY + window.innerHeight;
+        // trigger half way through the image
+        const slideInAt = bottomScrollPos - sliderImage.height / 2;
         // bottom of the image
         const imageBottom = sliderImage.offsetTop + sliderImage.height;
         const isHalfShown = slideInAt > sliderImage.offsetTop;
-        const isNotScrolledPast = window.scrollY < imageBottom;
-        if (isHalfShown && isNotScrolledPast) {
+        const isNotScrolledPassed = window.scrollY < (imageBottom + scrollPassedOffset);
+        if (isHalfShown && isNotScrolledPassed) {
           sliderImage.classList.add('active');
         } else {
           sliderImage.classList.remove('active');
