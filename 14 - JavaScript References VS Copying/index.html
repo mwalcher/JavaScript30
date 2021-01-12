@@ -24,16 +24,22 @@
 
     // Strings and Numbers create copies when you reassign a variable to another variable
 
+
+
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players;
+    console.log(players, team);
 
     // You might think we can just do something like this:
+    team[3] = 'Scott';
 
     // however what happens when we update that array?
 
     // now here is the problem!
+    console.log(players, team);
 
     // oh no - we have edited the original array too!
 
@@ -42,12 +48,29 @@
     // So, how do we fix this? We take a copy instead!
 
     // one way
+    const team2 = players.slice();
+    team2[3] = 'Rachel';
+    console.log(players, team2);
 
     // or create a new array and concat the old one in
+    const team3 = [].concat(players);
+    team3[3] = 'Monica';
+    console.log(players, team3);
 
     // or use the new ES6 Spread
+    const team4 = [...players];
+    team4[3] = 'Patrick';
+    console.log(players, team4);
+
+    // or Array.from()
+    const team5 = Array.from(players);
+    team5[3] = 'Paul';
+    console.log(players, team5);
 
     // now when we update it, the original one isn't changed
+
+
+
 
     // The same thing goes for objects, let's say we have a person object
 
