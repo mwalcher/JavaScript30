@@ -48,8 +48,29 @@
 
   <script>
     const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+    const articles = ['A', 'An', 'The'];
+    const bandList = document.querySelector('#bands');
 
+    const sortedBands = bands.sort((a, b) => {
+      let sortA = a;
+      let sortB = b;
+      const firstArray = a.split(' ');
+      const secondArray = b.split(' ');
 
+      if (articles.find(article => firstArray[0] === article)) {
+        firstArray.shift();
+        sortA = firstArray.join(' ');
+      }
+
+      if (articles.find(article => secondArray[0] === article)) {
+        secondArray.shift();
+        sortB = secondArray.join(' ');
+      }
+
+      return sortA > sortB ? 1 : -1;
+    });
+
+    bandList.innerHTML = sortedBands.map((band) => `<li>${ band }</li>`).join('');
   </script>
 
 </body>
