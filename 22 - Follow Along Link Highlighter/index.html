@@ -37,6 +37,13 @@
     const highlight = document.createElement('span');
     highlight.classList.add('highlight');
     document.body.append(highlight);
+
+    function highlightLink() {
+      const linkCords = this.getBoundingClientRect();
+      console.log(linkCords);
+    }
+
+    triggers.forEach(link => link.addEventListener('mouseenter', highlightLink));
   </script>
 </body>
 
