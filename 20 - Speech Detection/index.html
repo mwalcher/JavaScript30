@@ -29,6 +29,10 @@
 
       p.textContent = transcript;
 
+      if (transcript.includes('run a function')) {
+        console.log('Running a function!');
+      }
+
       if (e.results[0].isFinal) {
         p = document.createElement('p');
         words.appendChild(p);
