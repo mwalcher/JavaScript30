@@ -172,7 +172,19 @@
   </div>
 
   <script>
+    const { body } = document;
+    const nav = document.querySelector('#main');
+    const topOfNav = nav.offsetTop;
 
+    function fixNav() {
+      if (window.scrollY >= topOfNav) {
+        body.classList.add('fixed-nav');
+      } else {
+        body.classList.remove('fixed-nav');
+      }
+    }
+
+    window.addEventListener('scroll', fixNav);
   </script>
 
 </body>
