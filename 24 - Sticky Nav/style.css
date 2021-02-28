@@ -86,12 +86,12 @@ li.logo {
     font-size: 30px;
 }
 
-li.logo a {
-    color: black;
-}
-
 .fixed-nav li.logo {
     max-width: 500px;
+}
+
+li.logo a {
+    color: black;
 }
 
 nav a {
