@@ -28,10 +28,10 @@
       const y = e.pageY - this.offsetTop;
       const percent = y / this.offsetHeight;
       const barHeight = `${ Math.round(percent * 100) }%`;
-
-      console.log('barHeight', barHeight);
+      const playbackRate = percent * (max - min) + min
 
       bar.style.height = barHeight;
+      bar.textContent = `${ playbackRate.toFixed(2) }x`;
     })
   </script>
 </body>
