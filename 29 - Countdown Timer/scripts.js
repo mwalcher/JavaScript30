@@ -42,9 +42,15 @@ function displayEndTime(timestamp) {
     endTime.textContent = `Be Back At ${ adjustedHour(hour) }:${ addLeadingZero(minutes) }`;
 }
 
-function startTimer() {
+buttons.forEach(button => button.addEventListener('click', function () {
     const seconds = parseInt(this.dataset.time);
     timer(seconds);
-}
+}));
 
-buttons.forEach(button => button.addEventListener('click', startTimer));
+// you can select the element by it's name attribute
+document.customForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const mins = this.minutes.value;
+    timer(mins * 60);
+    this.reset();
+});
