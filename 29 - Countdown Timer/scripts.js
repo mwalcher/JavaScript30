@@ -2,12 +2,16 @@ let countdown;
 const pageTitle = document.title;
 const timerDisplay = document.querySelector('.display__time-left');
 const endTime = document.querySelector('.display__end-time');
+const buttons = document.querySelectorAll('[data-time]');
 
 const addLeadingZero = (int) => `${ int < 10 ? '0' : '' }${ int }`;
 
 const adjustedHour = (hour) => hour > 12 ? hour - 12 : hour;
 
 function timer(seconds) {
+    // clear any existing timers
+    clearInterval(countdown);
+
     const now = Date.now();
     const then = now + seconds * 1000;
     displayTimeLeft(seconds);
@@ -37,3 +41,10 @@ function displayEndTime(timestamp) {
     const minutes = end.getMinutes();
     endTime.textContent = `Be Back At ${ adjustedHour(hour) }:${ addLeadingZero(minutes) }`;
 }
+
+function startTimer() {
+    const seconds = parseInt(this.dataset.time);
+    timer(seconds);
+}
+
+buttons.forEach(button => button.addEventListener('click', startTimer));
