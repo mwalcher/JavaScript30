@@ -38,6 +38,7 @@
     const holes = document.querySelectorAll('.hole');
     const scoreBoard = document.querySelector('.score');
     const moles = document.querySelectorAll('.mole');
+    const totalGameTime = 10000;
     let lastHole;
     let timeUp = false;
 
@@ -65,6 +66,13 @@
         hole.classList.remove('up');
         if (!timeUp) peep();
       }, time);
+    }
+
+    function startGame() {
+      scoreBoard.textContent = 0;
+      timeUp = false;
+      peep();
+      setTimeout(() => timeUp = true, totalGameTime);
     }
 
   </script>
